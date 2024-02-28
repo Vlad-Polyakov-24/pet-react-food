@@ -1,6 +1,17 @@
+import React from "react";
+import Header from "./components/Layout/Header/Header";
+import Intro from "./components/Layout/Intro/Intro";
+import Meals from "./components/Meals/Meals";
+
 const App = () => {
   return (
-    <div>go</div>
+    <React.Fragment>
+      <Header/>
+      <main>
+        <Intro/>
+        <Meals/>
+      </main>
+    </React.Fragment>
   );
 }
 

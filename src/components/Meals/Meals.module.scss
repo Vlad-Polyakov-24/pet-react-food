@@ -1,0 +1,41 @@
+.meals {
+  padding-top: 40px;
+  padding-bottom: 40px;
+
+  &__list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+
+    &:not(:first-child) {
+      padding-top: 10px;
+    }
+    &:not(:last-child) {
+      padding-bottom: 10px;
+      border-bottom: 1px solid gray;
+    }
+
+    .title {
+      font-size: 18px;
+
+      + .desc {
+        margin-top: 5px;
+      }
+    }
+    .desc {
+      font-size: 16px;
+      font-style: italic;
+
+      + .price {
+        margin-top: 5px;
+      }
+    }
+    .price {
+      display: block;
+      font-size: 20px;
+      font-weight: 700;
+      color: #6b068a;
+    }
+  }
+}

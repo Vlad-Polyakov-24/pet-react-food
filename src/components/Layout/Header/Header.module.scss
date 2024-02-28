@@ -1,0 +1,22 @@
+@import "../../../assets/styles/utils/vars";
+
+.header {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #6b068a;
+
+  &__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+  }
+
+  &__logo {
+    display: block;
+    font-size: 26px;
+    line-height: 1;
+    font-weight: 700;
+    color: $white;
+  }
+}
