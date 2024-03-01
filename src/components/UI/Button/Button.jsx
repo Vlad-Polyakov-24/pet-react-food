@@ -2,7 +2,7 @@ import React from 'react';
 import sprites from '../../../assets/images/icons/sprites.svg';
 import styles from './Button.module.scss';
 
-const Button = ({text, cart, count, className, ...props}) => {
+const Button = ({text, cart, total, className, ...props}) => {
   const classes = className?.split(' ').reduce((all, className) => all += ` ${styles[className]}`, '');
 
   return (
@@ -13,7 +13,7 @@ const Button = ({text, cart, count, className, ...props}) => {
         </svg>
       </span> : null}
       <span className={styles.btn__text}>{text}</span>
-      {count ? <span className={styles.btn__count}>2</span> : null}
+      {total ? <span className={styles.btn__count}>{total}</span> : null}
     </button>
   )
 };

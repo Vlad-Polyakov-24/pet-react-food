@@ -10,11 +10,26 @@
   justify-content: center;
   padding: 20px;
   background-color: rgba(0, 0, 0, .5);
+  transition: 1s;
+
 
   &__inner {
     width: 100%;
     max-width: 500px;
+    padding: 20px;
     background-color: white;
     border-radius: 20px;
+    animation: slide-down 300ms ease-out forwards;
+  }
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-3rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

@@ -5,27 +5,61 @@
   gap: 10px;
   padding: 7px 20px;
   border-radius: 20px;
+  border: 2px solid #7d0aaf;
   background-color: #7d0aaf;
   color: white;
 
   @media (hover: hover) {
     &:hover {
-      background-color: #6d407c;
+      background-color: #28142f;
+      border-color: #28142f;
     }
   }
 
   &--cart {
+    border: 2px solid #47035d;
     background-color: #47035d;
 
     @media (hover: hover) {
       &:hover {
         background-color: #2b0239;
+        border-color: #2b0239;
 
         .btn__count {
           background-color: #6d0d8d;
         }
       }
     }
+  }
+  &--outline {
+    border: 2px solid #7d0aaf;
+    background-color: transparent;
+    color: #7d0aaf;
+
+    @media (hover: hover) {
+      &:hover {
+        background-color: #7d0aaf;
+        border-color: #7d0aaf;
+        color: white;
+      }
+    }
+  }
+  &--small-radius {
+    border-radius: 5px;
+  }
+  &--count {
+    min-width: 40px;
+    padding-left: 10px;
+    padding-right: 10px;
+
+    .btn__text {
+      font-size: 20px;
+      font-weight: 900;
+      line-height: .5;
+    }
+  }
+  &--bump {
+    animation: bump 300ms ease-out;
   }
 
   &__icon {
@@ -44,6 +78,7 @@
     display: block;
     font-size: 16px;
     line-height: 1;
+    text-align: center;
     color: currentColor;
   }
 
@@ -59,5 +94,23 @@
     line-height: 1;
     font-weight: 600;
     color: currentColor;
+  }
+}
+
+@keyframes bump {
+  0% {
+    transform: scale(1);
+  }
+  10% {
+    transform: scale(0.9);
+  }
+  30% {
+    transform: scale(1.1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
   }
 }

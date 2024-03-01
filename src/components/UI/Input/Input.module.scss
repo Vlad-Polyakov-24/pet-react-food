@@ -6,4 +6,9 @@
   border-radius: 5px;
   border: 1px solid gray;
   font-size: 16px;
+  text-align: center;
+
+  &.invalid {
+    border-color: tomato;
+  }
 }

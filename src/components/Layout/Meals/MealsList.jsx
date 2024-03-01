@@ -31,8 +31,8 @@ const DUMMY_MEALS = [
   },
 ];
 
-const MealsList = (props) => {
-  const items = DUMMY_MEALS.map(({id, name, description, price}) => <MealsListItem key={id} title={name} desc={description} price={price}/>);
+const MealsList = () => {
+  const items = DUMMY_MEALS.map(({id, name, description, price}) => <MealsListItem key={id} id={id} title={name} desc={description} price={price}/>);
 
   return (
     <ul>
