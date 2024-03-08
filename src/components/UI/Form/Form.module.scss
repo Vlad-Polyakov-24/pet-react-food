@@ -7,8 +7,21 @@
     align-items: flex-end;
     gap: 5px;
   }
+  &--cart {
+    display: grid;
+    gap: 10px;
+    max-height: 300px;
+    overflow: auto;
+
+    .form__group {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 5px;
+    }
+  }
 
   &__group {
+    position: relative;
     display: flex;
     align-items: center;
     gap: 10px;

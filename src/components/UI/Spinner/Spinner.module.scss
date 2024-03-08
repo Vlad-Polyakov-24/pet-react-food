@@ -1,0 +1,23 @@
+.spinner {
+  display: block;
+  width: 100%;
+  max-width: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  aspect-ratio: 1;
+  border-radius: 100%;
+  background-color: #6b068a;
+  animation: scale 1s linear infinite;
+}
+
+@keyframes scale {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

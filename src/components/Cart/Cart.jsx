@@ -1,43 +1,56 @@
-import React, {useContext} from 'react';
-import styles from './Cart.module.scss';
+import React, {useContext, useEffect, useState} from 'react';
 import CartContext from "../../store/CartContext";
-import Modal from "../UI/Modal/Modal";
-import Button from "../UI/Button/Button";
-import CartItem from "./CartItem";
+import Modal, { ModalOverlay } from "../UI/Modal/Modal";
+import useHttp from "../../hooks/useHttp";
+import CartForm from "./CartForm";
+import CartMeals from "./CartMeals";
+import CartInfo from "./CartInfo";
 
 const Cart = (props) => {
-  const cartContext = useContext(CartContext)
-  const items = cartContext.items.map(item => <CartItem
-    key={item.id}
-    title={item.title}
-    price={item.price}
-    amount={item.amount}
-    onAdd={addCartItemHandler.bind(null, item)}
-    onRemove={removeCartItemHandler.bind(null, item.id)}
-  />);
-  const hasItems = cartContext.items.length > 0;
+  const cartContext = useContext(CartContext);
+  const {isLoading, error, sendHttpRequest} = useHttp();
+  const [formUI, setFormUI] = useState({
+    form: false,
+    buttons: true,
+  });
+  const [isSend, setIsSend] = useState(false);
 
-  function addCartItemHandler(item) {
-    cartContext.addItem({...item, amount: 1});
-  }
+  useEffect(() => {
+    if (isSend && !error) cartContext.resetCart()
+  }, [isSend]);
 
-  function removeCartItemHandler(id) {
-    cartContext.removeItem(id)
-  }
+  const sendData = (data) => {
+    const {items, totalAmount} = cartContext;
+    const meals = {};
+
+    items.map(item => {
+      meals[item.title] = {
+        amount: item.amount,
+        price: item.price,
+      }
+    });
+
+    const receipt = {
+      totalAmount,
+      meals: meals,
+      userInfo: data,
+    };
+
+    sendHttpRequest('https://jokes-study-default-rtdb.firebaseio.com/receipts.json', {
+      method: 'POST',
+      body: receipt,
+    }).then(() => {
+      setIsSend(true);
+    });
+  };
 
   return (
     <Modal onHideCart={props.onHideCart}>
-      <ul className={styles.cart__list}>
-        {items}
-      </ul>
-      <div className={styles.cart__total}>
-        <strong className={styles.caption}>Разом</strong>
-        <span className={styles.total}>${Math.abs(cartContext.totalAmount).toFixed(2)}</span>
-      </div>
-      <div className={styles.cart__buttons}>
-        <Button type='button' text='Зачинити' className='btn--outline' onClick={() => props.onHideCart(false)}></Button>
-        {hasItems && <Button type='button' text='Замовити'></Button>}
-      </div>
+      {isLoading && <ModalOverlay/>}
+      {!isSend && <CartMeals onHideCart={props.onHideCart} showForm={setFormUI} status={formUI}/>}
+      {!isSend && formUI.form && <CartForm onHideCart={props.onHideCart} onSubmit={sendData}/>}
+      {!isLoading && error && <CartInfo status={{code: 'unsuccessful', message: error}} onHideCart={props.onHideCart}/>}
+      {!isLoading && isSend && !error && <CartInfo status={{code: 'success', message: 'Дякуємо за замовлення!'}} onHideCart={props.onHideCart}/>}
     </Modal>
   );
 };

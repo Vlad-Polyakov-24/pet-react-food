@@ -61,6 +61,10 @@
   &--bump {
     animation: bump 300ms ease-out;
   }
+  &--center {
+    margin-left: auto;
+    margin-right: auto;
+  }
 
   &__icon {
     display: block;
@@ -94,6 +98,11 @@
     line-height: 1;
     font-weight: 600;
     color: currentColor;
+  }
+
+  &:disabled {
+    background-color: #ccc;
+    border-color: #ccc;
   }
 }
 

@@ -10,7 +10,7 @@ const MealsListItem = (props) => {
   const cartContext = useContext(CartContext);
   const [validInput, setValidInput] = useState(true);
 
-  const submit = (e) => {
+  const submit = e => {
     e.preventDefault();
 
     if (!input.current.value || +input.current.value <= 0) {
@@ -26,6 +26,8 @@ const MealsListItem = (props) => {
       price: props.price,
       amount: +input.current.value,
     });
+
+    e.target.reset();
   };
 
   return (
@@ -35,8 +37,8 @@ const MealsListItem = (props) => {
         <p className={styles.desc}>{props.desc}</p>
         <strong className={styles.price}>${props.price}</strong>
       </div>
-      <Form className='form--meals' onSubmit={(e) => submit(e)}>
-        <Input ref={input} type='number' max='10' desc='Кількість' id={props.id} valid={validInput}/>
+      <Form className='form--meals' onSubmit={submit}>
+        <Input ref={input} type='number' max='10' desc='Кількість' id={props.id} className={!validInput ? 'invalid' : ''}/>
         <Button type='submit' text='Додати'/>
       </Form>
     </li>

@@ -42,3 +42,22 @@ body {
     max-width: 100%;
   }
 }
+
+.error-message {
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  color: tomato;
+
+  &--absolute {
+    position: absolute;
+    top: 0;
+    right: 0;
+    text-align: left;
+    font-size: 14px;
+  }
+}
+
+.mt-10 {
+  margin-top: 10px;
+}
